@@ -1,0 +1,144 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Payment Gateway API",
+      "description": "API Documentation for Payment Gateway Service"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+      "/payments": {
+        "post": {
+          "summary": "Create Payment",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Payment created successfully"
+            }
+          }
+        }
+      },
+      "/payments/{paymentId}/process": {
+        "post": {
+          "summary": "Process Payment",
+          "parameters": [
+            {
+              "name": "paymentId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PaymentMethod"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Payment processed successfully"
+            }
+          }
+        }
+      },
+      "/payments/{paymentId}": {
+        "get": {
+          "summary": "Retrieve Payment Status",
+          "parameters": [
+            {
+              "name": "paymentId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Payment status retrieved successfully"
+            }
+          }
+        }
+      },
+      "/payments/{paymentId}/refund": {
+        "post": {
+          "summary": "Handle Refund",
+          "parameters": [
+            {
+              "name": "paymentId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Refund"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Refund processed successfully"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentMethod": {
+        "type": "object",
+        "properties": {
+          "paymentMethod": {
+            "type": "string"
+          },
+          "cardNumber": {
+            "type": "string"
+          },
+          "expiryDate": {
+            "type": "string"
+          },
+          "cvv": {
+            "type": "string"
+          }
+        }
+      },
+      "Refund": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+  
