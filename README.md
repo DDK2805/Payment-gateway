@@ -10,8 +10,7 @@ This is a scalable and secure payment gateway service that handles different typ
 - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
 - [Design Document](#design-document)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -148,3 +147,49 @@ POST http://localhost:3000/api/payments/{payment_id}/refund
 Verify Responses:
 
 Check the responses in Postman to ensure they match the expected outputs.
+
+-------------------------------------------------------------------------------------------
+
+7.API Documentation
+API documentation is provided by Swagger and is accessible at http://localhost:3000/docs.
+
+8.Design Document
+High-Level Architecture
+
+Database Schema
+plaintext
+Copy code
+payments
+├── _id (ObjectId)
+├── amount (Number)
+├── currency (String)
+├── status (String)
+├── paymentMethod (String)
+├── createdAt (Date)
+├── updatedAt (Date)
+API Endpoints
+
+
+Create a Payment
+POST /api/payments
+
+Process a Payment
+POST /api/payments/:id/process
+
+Retrieve Payment Status
+GET /api/payments/:id
+
+Handle Refund
+POST /api/payments/:id/refund
+
+
+Data Flow
+Create a Payment: Client sends a request to create a payment. Server validates the request, saves the payment to the database, and returns the payment details.
+Process a Payment: Client sends a request to process the payment. Server updates the payment status in the database.
+Retrieve Payment Status: Client sends a request to retrieve the payment status. Server fetches the payment details from the database and returns them.
+Handle Refund: Client sends a request to handle a refund. Server updates the payment status to "refunded" in the database.
+
+Security Measures
+Data Encryption: Sensitive data is encrypted using industry-standard encryption techniques.
+Authentication and Authorization: JWT is used for secure authentication and authorization.
+Contributing
