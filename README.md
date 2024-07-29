@@ -1,4 +1,5 @@
 # Payment Gateway Service
+
 This is a scalable and secure payment gateway service that handles different types of transactions (e.g., credit card, debit card, digital wallets). This project includes the backend implementation using Node.js and Express, API documentation with Swagger, containerization with Docker, and CI/CD pipeline setup.
 
 ## Table of Contents
